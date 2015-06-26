@@ -2,3 +2,5 @@
 - [ ] More examples
 - [ ] Tests?
 - [ ] Reduce duplication in `Randomizer.perform`
+- [ ] Make into a gem
+- [ ] Add installation instructions
