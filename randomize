@@ -1,0 +1,70 @@
+#! /usr/bin/env ruby
+
+class Randomizer
+  VERSION = '0.0.1'
+
+  attr_reader :options
+
+  def initialize(arguments)
+    @arguments = arguments
+
+    parse_options
+
+    perform
+  end
+
+  def perform
+    @files.each do |file|
+      lines = IO.readlines(file).shuffle
+      length = lines.length
+      number_of_groups = (length/options[:groups].to_f).ceil if options[:groups]
+
+      unless options[:groups]
+        puts lines
+      else
+        lines.each_with_index do |line, index|
+          puts line
+          puts "\n" if index % number_of_groups == (number_of_groups - 1)
+        end
+      end
+    end
+  end
+
+protected
+
+  def parse_options
+    require 'optparse'
+
+    @options = {}
+    optparser = OptionParser.new do |opts|
+      opts.banner = "Usage: randomize <file> ... [options]"
+      opts.separator ""
+      opts.separator "Specific options:"
+
+      opts.on("-g", "--groups N", Integer, "Group lines into N groups") do |g|
+        options[:groups] = g
+      end
+
+      opts.on_tail("-h", "--help", "Prints this help") do
+        puts opts
+        exit 0
+      end
+
+      opts.on_tail("-v", "--version", "Show version") do
+        puts VERSION
+        exit 0
+      end
+    end
+
+    optparser.parse!(@arguments)
+
+    if ARGV.empty?
+      puts optparser
+      exit 1
+    else
+      @files = ARGV
+    end
+  end
+end
+
+Randomizer.new(ARGV)
