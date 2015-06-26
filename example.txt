@@ -1,0 +1,8 @@
+bananas
+strawberries
+grapes
+milk
+bread
+eggs
+cereal
+oranges
