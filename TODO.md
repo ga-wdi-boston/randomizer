@@ -1,0 +1,4 @@
+- [ ] Accept STDIN
+- [ ] More examples
+- [ ] Tests?
+- [ ] Reduce duplication in `Randomizer.perform`
