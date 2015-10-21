@@ -1,8 +1,8 @@
 bananas
-strawberries
+bread
+cereal
+eggs
 grapes
 milk
-bread
-eggs
-cereal
 oranges
+strawberries
